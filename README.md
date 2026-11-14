@@ -1,5 +1,6 @@
 # Vezolla E-Commerce Platform
 
+[![CI](https://github.com/halilemret/emr-ecommerce-vezolla/actions/workflows/ci.yml/badge.svg)](https://github.com/halilemret/emr-ecommerce-vezolla/actions/workflows/ci.yml)
 [![Next.js](https://img.shields.io/badge/Next.js-16.4-black?logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19-blue?logo=react)](https://react.dev/)
 [![Prisma](https://img.shields.io/badge/Prisma-7-2D3748?logo=prisma)](https://www.prisma.io/)
@@ -23,8 +24,8 @@ A modern, high-performance, modular full-stack e-commerce platform built with **
 - **One-Page Checkout & Payments**: Seamless checkout flow with Iyzico payment gateway, installment breakdown tables, automated legal contracts (Pre-Information & Distance Sales Contracts), and address auto-completion.
 - **Automated Invoicing & Shipping**: Built-in E-Invoice (E-Fatura) generator and carrier integrations (Yurtiçi, Aras, MNG, PTT) with barcode label rendering (`bwip-js`).
 - **GEO & AI Search Readiness**: Out-of-the-box `llms.txt`, Generative Engine Optimization (GEO) tracking for AI search bots (GPTBot, ClaudeBot, PerplexityBot), and dynamic robots/sitemap generators.
-- **Zero-Friction Local Development**: Embedded local PostgreSQL instance with one-command database spinup and zero-install database seeding.
-- **175+ Automated Tests**: Comprehensive unit and integration test coverage powered by Vitest.
+- **Zero-Friction Local Development**: Docker Compose support alongside an embedded PostgreSQL script for zero-install database seeding.
+- **175+ Automated Tests**: Comprehensive unit and integration test coverage powered by Vitest with GitHub Actions CI pipeline.
 
 ---
 
@@ -85,7 +86,7 @@ Access the control panel at `/admin` with role-based access control (RBAC):
 
 - **Node.js**: v20 or higher
 - **npm** or **pnpm**
-- **Git**
+- **Docker** (optional, for running PostgreSQL via Docker Compose)
 
 ### Quick Start
 
@@ -106,22 +107,37 @@ Access the control panel at `/admin` with role-based access control (RBAC):
    cp .env.example .env
    ```
 
-4. **Initialize Local Database & Seed**:
-   Run the embedded PostgreSQL instance (runs automatically on port 5433):
-   ```bash
-   npm run db
-   ```
-   *In a separate terminal*, apply schema and seed initial demo data:
+4. **Start PostgreSQL Database**:
+   - **Option A (Docker Compose - Recommended)**:
+     ```bash
+     docker compose up -d
+     ```
+   - **Option B (Embedded script)**:
+     ```bash
+     npm run db
+     ```
+
+5. **Initialize Database Schema & Demo Seed**:
    ```bash
    npm run db:push
    npm run db:seed
    ```
 
-5. **Start the Development Server**:
+6. **Start the Development Server**:
    ```bash
    npm run dev
    ```
-   Open [http://localhost:3000](http://localhost:3000) to view the storefront, or [http://localhost:3000/admin](http://localhost:3000/admin) for the management workbench.
+   Open [http://localhost:3000](http://localhost:3000) for the storefront, or [http://localhost:3000/admin](http://localhost:3000/admin) for the admin workbench.
+
+---
+
+## 🔑 Default Credentials (After Seeding)
+
+After running `npm run db:seed` or `npm run db:zero-install`, the following default administrative user is created:
+
+| Role | Email | Password | Access URL |
+| :--- | :--- | :--- | :--- |
+| **Super Admin / Store Owner** | `admin@vezolla.com` *(or `admin@ornek-magaza.local`)* | `Admin123!` | [http://localhost:3000/admin](http://localhost:3000/admin) |
 
 ---
 
@@ -158,6 +174,26 @@ npx vitest
 # Run TypeScript typecheck
 npm run typecheck
 ```
+
+---
+
+## 🗺️ Roadmap & Planned Features
+
+- [ ] **International Payments**: Stripe and PayPal payment gateways alongside Iyzico.
+- [ ] **Multi-Language (i18n)**: Built-in internationalization for English, German, and Arabic.
+- [ ] **Advanced Search Adapters**: Optional Typesense and Meilisearch integrations for million-item catalogs.
+- [ ] **Webhook Subscriptions**: Outbound webhooks for order creation, inventory changes, and fulfillment updates.
+- [ ] **Multi-Vendor Marketplace Support**: Vendor portal for merchant onboarding and commission payouts.
+
+---
+
+## 🤝 Contributing & Community
+
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+- Please read our [Contributing Guidelines](CONTRIBUTING.md) for details on code style, branching, and PR submissions.
+- Please review our [Code of Conduct](CODE_OF_CONDUCT.md).
+- To report security vulnerabilities, consult our [Security Policy](SECURITY.md).
 
 ---
 
