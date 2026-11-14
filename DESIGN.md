@@ -1,37 +1,35 @@
-# DESIGN.md: Görsel Yön ve Tasarım Sistemi
+# Visual Direction & Design System
 
-## 1. Durum ve Kimlik (R-37)
+## 1. Identity & Architecture
 
-Marka adı ve kategori henüz kesinleşmediği için vitrin teması **"Yönsüz Taslak (Draft without direction)"** olarak etiketlenmiştir ve yönetim panelinden (`/admin/ayarlar/tema`) kod değişikliği gerektirmeden özelleştirilebilir.
+The storefront and admin panel are styled with a clean, high-contrast, editorial aesthetic designed to showcase products with clarity and distinction:
 
-- **Vitrin Design Read**: Reading this as: brand-agnostic e-commerce storefront draft for retail shoppers, in an editorial catalog language, dial `ENERGY 1 / RHYTHM 1 / MOTION 1`.
-- **Yönetim Paneli Design Read**: Reading this as: operational commerce back-office for store operators, in a dense tabular workbench language, dial `ENERGY 1 / RHYTHM 2 / MOTION 1`.
+- **Storefront**: Brand-agnostic, editorial catalog feel with crisp typography, responsive product grids, and accessible components.
+- **Admin Panel**: High-density operational commerce workbench tailored for store managers and operators.
 
-## 2. Renk Paleti (R-01, R-25, R-29)
+## 2. Color Palette
 
-Aktif palet 2 ana nötr + 1 vurgu renginden oluşur. Tüm metin eşleşmeleri WCAG AA (4.5:1+) kontrast standardını sağlar:
+The active palette relies on 2 neutral tones + 1 focused accent. All text pairings strictly satisfy WCAG AA (4.5:1+) contrast standards:
 
-- **Zemin (Surface)**: `#fafaf9` (Stone 50, kağıt hissi veren sıcak açık zemin) ve `#ffffff` (kart/tablo yüzeyi)
-- **Mürekkep (Ink / Primary)**: `#18181b` (Zinc 900, birincil metin ve ana aksiyon dolgusu; `#fafaf9` üzerinde 16.8:1 kontrast)
-- **İkincil Metin**: `#52525b` (Zinc 600; `#ffffff` üzerinde 7.0:1 kontrast)
-- **Kenarlık**: `#e4e4e7` (Zinc 200, 1px keskin ayraçlar)
-- **Tek Vurgu Rengi (Accent)**: `#9a3412` (Kiremit / Terracotta, `#ffffff` üzerinde 6.8:1 kontrast). Yalnızca birincil indirim/kampanya vurgusu ve aktif durum işaretinde kullanılır.
-- **Durum Renkleri**:
-  - Başarılı / Stokta: `#166534` metin, `#dcfce7` zemin
-  - Uyarı / Kritik stok: `#92400e` metin, `#fef3c7` zemin
-  - Hata / İptal: `#991b1b` metin, `#fee2e2` zemin
+- **Surface**: `#fafaf9` (warm paper-like background) and `#ffffff` (card and table surfaces)
+- **Ink / Primary Text**: `#18181b` (deep zinc, high contrast primary text and buttons)
+- **Secondary Text**: `#52525b` (muted zinc, high readability secondary text)
+- **Borders**: `#e4e4e7` (crisp 1px dividers)
+- **Accent**: `#9a3412` (terracotta / brick red, used sparingly for primary discounts, badges, and active states)
+- **Status Colors**:
+  - Success / In Stock: `#166534` text, `#dcfce7` surface
+  - Warning / Low Stock: `#92400e` text, `#fef3c7` surface
+  - Error / Cancelled: `#991b1b` text, `#fee2e2` surface
 
-## 3. Tipografi (R-06)
+## 3. Typography
 
-- **Vitrin Başlıkları**: `Instrument Serif` (veya panelden seçilen `Plus Jakarta Sans` / `IBM Plex Sans`). Editoryal katalog kimliği verir.
-- **Gövde ve Yönetim Paneli**: `Plus Jakarta Sans`. Türkçe karakter desteği tam, yoğun veri tablolarında yüksek okunabilirlik sağlar.
-- **Sayısal Veriler (Fiyat, SKU, Barkod, Sipariş No, Stok)**: `font-variant-numeric: tabular-nums` ve `IBM Plex Mono` (yalnızca gerçek kod, SKU, XML düğüm yolu ve para tablolarında).
+- **Headings**: `Instrument Serif` (or theme-customized `Plus Jakarta Sans` / `IBM Plex Sans`). Provides an editorial catalog feel.
+- **Body & Admin Panel**: `Plus Jakarta Sans`. Clean rendering and high legibility across dense data tables.
+- **Monospace & Numerical Data**: `font-variant-numeric: tabular-nums` and `IBM Plex Mono` for barcodes, SKUs, order IDs, and currency amounts.
 
-## 4. İkonografi ve Bileşen Kuralları (R-04, R-10, R-11, R-12)
+## 4. Iconography & Component Rules
 
-- **İkon Seti**: `@phosphor-icons/react` (Lucide varsayılanından kaçınmak ve mimari netlik sağlamak için seçildi). Yalnızca işlevi doğrudan anlatan ikonlar kullanılır; süs amaçlı yıldız/parıltı/roket ikonu ve metin içi emoji kullanılmaz.
-- **Köşe Yuvarlaklığı (R-11)**: Tutarlı `rounded-md` (6px) tasarım sistemi; tüm öğeleri hap (`rounded-full`) yapmaktan kaçınılır.
-- **Gölge ve Blur (R-10, R-12)**: Kartlar gölgesiz, `1px solid #e4e4e7` kenarlıkla ayrılır. Gölge yalnızca açılır menü ve modal katmanında (`shadow-lg`) yükselti belirtmek için kullanılır.
-- **Metin Kuralları (R-02, R-15, R-16)**:
-  - Metinlerde uzun tire (em dash) kesinlikle kullanılmaz; virgül, iki nokta veya nokta kullanılır.
-  - "Keşfet", "Daha Fazla" gibi jenerik butonlar yerine "Varyantları İncele", "Sepete Ekle", "Siparişi Tamamla" gibi somut eylem metinleri kullanılır.
+- **Icon Set**: `@phosphor-icons/react` for functional, crisp icon representation.
+- **Border Radius**: Consistent `rounded-md` (6px) system.
+- **Shadows**: Border-first separation (`1px solid #e4e4e7`). Elevation shadows are reserved for modals and dropdown menus (`shadow-lg`).
+- **Action Semantics**: Explicit and functional button labels ("View Variants", "Add to Cart", "Complete Order") rather than vague text.
